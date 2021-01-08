@@ -5,6 +5,8 @@
 !.gitignore
 __pycache__
 secret.txt
+publish.log
+/dist/
 /local_test/
 /coverage.xml
 /htmlcov/
