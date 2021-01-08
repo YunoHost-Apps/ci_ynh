@@ -50,6 +50,13 @@ To remove call e.g.:
 sudo yunohost app remove ci_ynh
 ```
 
+Run manual CI check. e.g.:
+```bash
+root@yunohost:~# cd /opt/yunohost/ci_ynh/
+root@yunohost:/opt/yunohost/ci_ynh# source venv/bin/activate
+(venv) root@yunohost:/opt/yunohost/ci_ynh# ./manage.py ci_run django_ynh
+```
+
 Backup / remove / restore cycle, e.g.:
 ```bash
 yunohost backup create --apps ci_ynh
