@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "ci_ynh"
 version = "0.1.0alpha0"
-description = "Test YunoHost packages in YunoHost"
+description = "CI for YunoHost to test YunoHost packages ;)"
 authors = ["JensDiemer <git@jensdiemer.de>"]
 license = "GPL"
 readme = "README.md"
