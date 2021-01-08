@@ -1,3 +1,5 @@
+import subprocess
+from unittest.mock import MagicMock, patch
 from uuid import UUID
 
 from django.test import TestCase
@@ -18,8 +20,13 @@ class YunohostUtilsTestCase(TestCase):
             package=package, task_id=UUID('00000000-1111-0000-0000-000000000001'), status=Check.STATUS_RUNNING
         )
 
-        check = check_package(package=package, check=check)
+        stdout = 'Mocked stdout'
+        completed_process = subprocess.CompletedProcess(args=('test',), returncode=0, stdout=stdout)
+        with patch('subprocess.run', MagicMock(return_value=completed_process)):
+            check = check_package(package=package, check=check)
         assert isinstance(check, Check)
 
-        assert check.status == 'fail'
-        assert 'return code:' in check.output
+        assert check.status == 'success'
+        assert check.output == (
+            '\ninstall success:\nMocked stdout\n(return code: 0)\nremove success:\nMocked stdout\n(return code: 0)'
+        )
