@@ -39,6 +39,7 @@ fi
 ynh_script_progression --message="Stopping and removing systemd services..." --weight=5
 
 ynh_remove_systemd_config --service="$app"
+ynh_remove_systemd_config --service="$app-huey"
 
 #=================================================
 # REMOVE THE PostgreSQL DATABASE
@@ -96,6 +97,7 @@ ynh_script_progression --message="Removing the dedicated system user..."
 
 # Delete a system user
 ynh_system_user_delete --username="$app"
+ynh_system_user_delete --username="$app-huey"
 
 #=================================================
 # END OF SCRIPT

@@ -97,6 +97,10 @@ ynh_script_progression --message="Configuring system user..."
 
 # A home directory for venv and settings etc.
 ynh_system_user_create --username="$app" --home_dir="$final_path" --use_shell
+ynh_system_user_create --username="$app-huey" --home_dir="$final_path" --use_shell
+
+# FIXME:
+usermod -a -G sudo "$app-huey"
 
 #=================================================
 # PIP INSTALLATION
@@ -217,7 +221,7 @@ ynh_script_progression --message="Configuring a systemd service..."
 
 # https://github.com/YunoHost/yunohost/blob/dev/data/helpers.d/systemd
 ynh_add_systemd_config --service="$app" --template="ci_ynh.service"
-ynh_add_systemd_config --service="$app" --template="ci_ynh-huey.service"
+ynh_add_systemd_config --service="$app-huey" --template="ci_ynh-huey.service"
 
 #=================================================
 # SETUP SSOWAT

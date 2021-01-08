@@ -3,8 +3,8 @@ Description=ci_ynh Huey worker
 After=redis.service postgresql.service ci_ynh.service
 
 [Service]
-User=__APP__
-Group=__APP__
+User=__APP__-huey
+Group=__APP__-huey
 WorkingDirectory=__FINALPATH__/
 
 ExecStart=__FINALPATH__/venv/bin/python3 __FINALPATH__/manage.py run_huey --worker-type process --workers 2

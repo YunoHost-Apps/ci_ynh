@@ -102,6 +102,7 @@ root@yunohost:~# tail -f /var/log/ci_ynh/ci_ynh.log
 root@yunohost:~# cat /etc/systemd/system/ci_ynh.service
 
 root@yunohost:~# systemctl reload-or-restart ci_ynh
+root@yunohost:~# systemctl reload-or-restart ci_ynh-huey
 root@yunohost:~# journalctl --unit=ci_ynh --follow
 ```
 

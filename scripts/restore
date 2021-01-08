@@ -63,7 +63,8 @@ touch "$final_path/local_settings.py"
 ynh_script_progression --message="Recreating the dedicated system user..."
 
 # Create the dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir="$final_path" --use_shell
+ynh_system_user_create --username="$app" --home_dir="$final_path" --use_shell
+ynh_system_user_create --username="$app-huey" --home_dir="$final_path" --use_shell
 
 #=================================================
 # RESTORE USER RIGHTS
