@@ -74,7 +74,7 @@ def check_package(*, package, check):
         'remove',
         f'{package.project_name}-{package.branch_name}',
     )
-    check = call_yunohost(action_name='install', args=args, package=package, check=check)
+    check = call_yunohost(action_name='remove', args=args, package=package, check=check)
     if check.status is not Check.STATUS_RUNNING:
         # failed -> abort other steps
         return check
