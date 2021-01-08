@@ -1,0 +1,101 @@
+[tool.poetry]
+name = "ci_ynh"
+version = "0.1.0alpha0"
+description = "Test YunoHost packages in YunoHost"
+authors = ["JensDiemer <git@jensdiemer.de>"]
+license = "GPL"
+readme = "README.md"
+homepage = "https://github.com/YunoHost-Apps/ci_ynh"
+packages = [
+    { include = "ci_ynh" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.7,<4.0.0"
+django = "*"
+django_ynh = "*"
+bx_py_utils = "*"
+huey = "*"
+django-huey-monitor = "*"  # https://github.com/boxine/django-huey-monitor
+gunicorn = "*"
+django-axes = "*"  # https://github.com/jazzband/django-axes
+psycopg2-binary = "*"
+django-redis = "*"
+
+
+[tool.poetry.dev-dependencies]
+poetry-publish = "*"  # https://github.com/jedie/poetry-publish
+django-debug-toolbar = "*"
+tox = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-django = "*"
+coveralls = "*"
+isort = "*"
+flake8 = "*"
+flynt = "*"
+black = "*"
+pyupgrade = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.isort]
+# https://pycqa.github.io/isort/docs/configuration/config_files/#pyprojecttoml-preferred-format
+atomic=true
+line_length=120
+case_sensitive=false
+skip_glob=["*/htmlcov/*","*/migrations/*"]
+multi_line_output=3
+include_trailing_comma=true
+known_first_party=["inventory"]
+no_lines_before="LOCALFOLDER"
+default_section="THIRDPARTY"
+sections=["FUTURE","STDLIB","THIRDPARTY","FIRSTPARTY","LOCALFOLDER"]
+lines_after_imports=2
+
+
+[tool.pytest.ini_options]
+# https://docs.pytest.org/en/latest/customize.html#pyproject-toml
+minversion = "6.0"
+norecursedirs = ".* .git __pycache__ conf coverage* dist htmlcov"
+# sometimes helpfull "addopts" arguments:
+#    -vv
+#    --verbose
+#    --capture=no
+#    --trace-config
+#    --full-trace
+#    -p no:warnings
+addopts = """
+    --import-mode=importlib
+    --reuse-db
+    --nomigrations
+    --cov=.
+    --cov-report term-missing
+    --cov-report html
+    --cov-report xml
+    --no-cov-on-fail
+    --showlocals
+    --doctest-modules
+    --failed-first
+    --last-failed-no-failures all
+    --new-first
+"""
+
+
+[tool.tox]
+# https://tox.readthedocs.io/en/latest/example/basic.html#pyproject-toml-tox-legacy-ini
+legacy_tox_ini = """
+[tox]
+isolated_build = True
+envlist = py39,py38,py37
+skip_missing_interpreters = True
+
+[testenv]
+passenv = *
+whitelist_externals = make
+commands =
+    make pytest
+"""

@@ -1,0 +1,68 @@
+{
+	"name": "ci_ynh",
+	"id": "ci_ynh",
+	"packaging_format": 1,
+	"description": {
+		"en": "Web based management to catalog things including state and location etc."
+	},
+	"version": "0.1.0alpha0~ynh",
+	"url": "https://github.comYunoHost-Apps/ci_ynh",
+	"license": "GPL-3.0",
+	"maintainer": {
+		"name": "Jens Diemer",
+		"email": "ci_ynh@jensdiemer.de"
+	},
+	"previous_maintainers": [],
+	"requirements": {
+		"yunohost": ">= 4.0"
+	},
+	"multi_instance": true,
+	"services": [
+		"nginx"
+	],
+	"arguments": {
+		"install" : [
+			{
+				"name": "domain",
+				"type": "domain",
+				"ask": {
+					"en": "Choose a domain for ci_ynh",
+					"fr": "Choisissez un domaine pour ci_ynh"
+				},
+				"example": "domain.org"
+			},
+			{
+				"name": "path",
+				"type": "path",
+				"ask": {
+				    "en": "Choose a path for ci_ynh",
+				    "fr": "Choisissez un chemin pour ci_ynh"
+				},
+				"example": "/ci_ynh",
+				"default": "/ci_ynh"
+			},
+			{
+				"name": "admin",
+				"type": "user",
+				"ask": {
+				    "en": "Choose an admin user for ci_ynh",
+				    "fr": "Choisissez l'administrateur pour ci_ynh"
+				},
+				"example": "johndoe"
+			},
+			{
+				"name": "is_public",
+				"type": "boolean",
+				"ask": {
+					"en": "Should ci_ynh be public accessible?",
+					"fr": "ci_ynh doit-il être accessible au public ?"
+				},
+				"help": {
+					"en": "Any YunoHost user and anonymous people from the web will be able to access the application",
+					"fr": "Tout utilisateur YunoHost et les personnes anonymes pourront accéder à l'application"
+				},
+				"default": false
+			}
+		]
+	}
+}
