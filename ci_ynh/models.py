@@ -13,6 +13,11 @@ class Package(TimetrackingBaseModel):
         verbose_name=_('Package.project_name.verbose_name'),
         help_text=_('Package.project_name.help_text'),
     )
+    ci_active = models.BooleanField(
+        default=True,
+        verbose_name=_('Package.ci_active.verbose_name'),
+        help_text=_('Package.ci_active.help_text'),
+    )
     url = models.URLField(
         # e.g.:
         # https://github.com/YunoHost-Apps/django_ynh/tree/master
@@ -31,7 +36,7 @@ class Package(TimetrackingBaseModel):
     )
     args = models.TextField(
         # TODO: generate dynamically
-        default='domain=domain.tld\npath=/path',
+        default='domain=domain.tld\npath=/path\nadmin=johndoe',
         verbose_name=_('Package.args.verbose_name'),
         help_text=_('Package.args.help_text'),
     )
@@ -75,11 +80,13 @@ class Check(TimetrackingBaseModel):
     STATUS_RUNNING = 'running'
     STATUS_SUCCESS = 'success'
     STATUS_FAIL = 'fail'
+    STATUS_TIMEOUT = 'timeout'
     STATUS_CHOICES = (
         (STATUS_UNKNOWN, _('Unknown')),
         (STATUS_RUNNING, _('CI is Running')),
         (STATUS_SUCCESS, _('CI run successful')),
         (STATUS_FAIL, _('CI run failed')),
+        (STATUS_TIMEOUT, _('Timeout')),
     )
     STATUS_CHOICES_DICT = dict(STATUS_CHOICES)
     STATUS_MAX_LENGTH = max(len(key) for key in STATUS_CHOICES_DICT.keys() if key is not None)
