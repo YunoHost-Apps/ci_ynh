@@ -58,5 +58,3 @@ def ci_run(*, package_pk, task):
 
     check = check_package(package=package, check=check)
     logger.info('CI run "%s" done: %s', package, check)
-
-

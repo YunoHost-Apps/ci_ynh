@@ -1,7 +1,7 @@
 import sys
 from uuid import UUID
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 from ci_ynh.models import Check, Package
 from ci_ynh.yunohost_utils import check_package
@@ -20,7 +20,7 @@ class Command(BaseCommand):
         package = Package.objects.filter(project_name=project_name).first()
         if package is None:
             print(f'ERROR: project name {project_name!r} does not exists!')
-            print(f'Registered names are:')
+            print('Registered names are:')
             names = Package.objects.values_list('project_name', flat=True)
             for name in names:
                 print(f' * {name!r}')
