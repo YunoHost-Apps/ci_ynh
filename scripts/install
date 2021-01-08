@@ -217,6 +217,7 @@ ynh_script_progression --message="Configuring a systemd service..."
 
 # https://github.com/YunoHost/yunohost/blob/dev/data/helpers.d/systemd
 ynh_add_systemd_config --service="$app" --template="ci_ynh.service"
+ynh_add_systemd_config --service="$app" --template="ci_ynh-huey.service"
 
 #=================================================
 # SETUP SSOWAT
