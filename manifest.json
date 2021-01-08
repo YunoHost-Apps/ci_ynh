@@ -5,7 +5,7 @@
 	"description": {
 		"en": "Web based management to catalog things including state and location etc."
 	},
-	"version": "0.1.0alpha0~ynh",
+	"version": "0.1.0alpha1~ynh",
 	"url": "https://github.comYunoHost-Apps/ci_ynh",
 	"license": "GPL-3.0",
 	"maintainer": {
