@@ -105,6 +105,7 @@ root@yunohost:~# systemctl reload-or-restart ci_ynh
 root@yunohost:~# systemctl reload-or-restart ci_ynh-huey
 root@yunohost:~# journalctl --unit=ci_ynh --follow
 root@yunohost:~# journalctl --unit=ci_ynh-huey --follow
+root@yunohost:~# journalctl --follow
 ```
 
 ## local test
