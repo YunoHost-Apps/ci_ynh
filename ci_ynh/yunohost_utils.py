@@ -51,7 +51,6 @@ def check_package(*, package, check):
     assert isinstance(check, Check)
 
     args = (
-        'sudo',
         'yunohost',
         'app',
         'install',
@@ -68,7 +67,6 @@ def check_package(*, package, check):
         return check
 
     args = (
-        'sudo',
         'yunohost',
         'app',
         'remove',
